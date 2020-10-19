@@ -94,6 +94,7 @@ const Header = () => {
                 Authorization: authHeader().Authorization,
             }
         };
+        console.log(imageFile)
         await Axios.post(`${process.env.REACT_APP_API_URL}/api/users/picture`,formData,config)
         handleDropClose()
         window.location.reload(false);
