@@ -98,10 +98,10 @@ const Conversations = props => {
                         >
                             <ListItemAvatar>
 
-                                {handleRecipient(c.recipientObj).img ? <Avatar src={`data:image/png;base64,${handleRecipient(c.recipientObj).img.data}`} >H</Avatar> : <Avatar>AD</Avatar>}
+                                {handleRecipient(c.recipientObj)&&(handleRecipient(c.recipientObj).img ? <Avatar src={`data:image/png;base64,${handleRecipient(c.recipientObj).img.data}`} >H</Avatar> : <Avatar>AD</Avatar>)}
                             </ListItemAvatar>
                             <ListItemText
-                                primary={handleRecipient(c.recipientObj).name}
+                                primary={handleRecipient(c.recipientObj)&&handleRecipient(c.recipientObj).name}
                                 secondary={
                                     <React.Fragment>
                                         {c.lastMessage}

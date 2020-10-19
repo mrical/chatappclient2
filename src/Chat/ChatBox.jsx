@@ -28,6 +28,7 @@ import Axios from 'axios';
 import authHeader from '../Utilities/auth-header';
 import DescriptionIcon from '@material-ui/icons/Description';
 import { Link } from '@material-ui/core';
+import { async } from 'rxjs/internal/scheduler/async';
 const useStyles = makeStyles(theme => ({
     root: {
         height: '100%',
@@ -84,6 +85,7 @@ const ChatBox = props => {
     const [messages, setMessages] = useState([]);
     const [lastMessage, setLastMessage] = useState(null);
     const [openPicker,setOpenPicker]=useState(false)
+    const [currentUser,setCurrentUser]=useState(null)
     const [file,setFile]=useState(null)
     const getGlobalMessages = useGetGlobalMessages();
     const sendGlobalMessage = useSendGlobalMessage();
@@ -94,6 +96,15 @@ const ChatBox = props => {
     const toggleEmojiPicker=()=>{
         setOpenPicker(!openPicker)
     }
+    useEffect(()=>{
+        (async()=>{
+            const config = {
+                headers: authHeader()
+            };
+            const {data}=await Axios.get(`${process.env.REACT_APP_API_URL}/api/users/currentUser`,config)
+            setCurrentUser(data)
+        })()
+    },[])
     useEffect(() => {
         reloadMessages();
         scrollToBottom();
@@ -187,7 +198,7 @@ const ChatBox = props => {
                         {messages && (
                             <List>
                                 {messages.map(m=>{
-                                    return (m.fromObj[0].name===authenticationService.currentUserValue.name?
+                                    return ((currentUser && m.fromObj[0]._id===currentUser._id)?
                                         (<ListItem
                                             key={m._id}
                                             className={`${classes.listItem} ${classes.listMyMessage}`}
@@ -290,7 +301,6 @@ const ChatBox = props => {
                                     </IconButton>
                                 </Grid>
                             </Grid>
-                            
                         </form>
                     </Grid>
                 </Grid>
