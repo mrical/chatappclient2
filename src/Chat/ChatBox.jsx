@@ -207,7 +207,7 @@ const ChatBox = props => {
                                             <ListItemText
                                                 primary={m.fromObj[0].name}
                                                 secondary={
-                                                    <div style={m.body.file?{display:"flex",flexDirection:"column",alignItems:"center"}:{}} >
+                                                    <div>
                                                         
                                                         
                                                         {m.body.file && (
