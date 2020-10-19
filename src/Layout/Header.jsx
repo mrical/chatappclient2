@@ -59,7 +59,6 @@ const Header = () => {
             };
             const {data}= await Axios.get(`${process.env.REACT_APP_API_URL}/api/users/currentUser`,config)
             if(data.img){
-                // const arrayBufferView = new Uint8Array(data.img.data);
                 const base64= _arrayBufferToBase64(data.img.data.data)
                 setImageUrl(base64)
             }
@@ -136,8 +135,8 @@ const Header = () => {
                     >
                         <MenuItem style={{display:"flex",flexDirection:"column"}} > {currentUserInfo &&( currentUserInfo.img ? <Avatar src={`data:image/png;base64,${imageUrl}`} >H</Avatar> : <Avatar>H</Avatar>)}
                         <form style={{margin:"5px"}} onSubmit={onFormSubmit}>
-                        <input accept="image/*" id="contained-button-file" type="file" name="image" onChange= {onChange} style={{display:"none"}}/>
-                        <label htmlFor="contained-button-file">
+                        <input accept="image/*" id="contained-button-file-2" type="file" name="image" onChange= {onChange} style={{display:"none"}}/>
+                        <label htmlFor="contained-button-file-2">
                         <Button variant="contained" size="small" color="primary" component="span">
                             Select
                         </Button>
