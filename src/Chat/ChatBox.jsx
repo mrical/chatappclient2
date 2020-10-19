@@ -205,11 +205,9 @@ const ChatBox = props => {
                                         >
                                             
                                             <ListItemText
-                                                primary={m.fromObj[0].name}
+                                                primary={ <div style={{marginLeft:"auto"}} >{m.fromObj[0].username}</div>}
                                                 secondary={
                                                     <div>
-                                                        
-                                                        
                                                         {m.body.file && (
                                                         <Link href={process.env.REACT_APP_API_URL+m.body.file.slice(7,m.body.file.length)} download={m.body.message+path.extname(m.body.file)}>
                                                             <DescriptionIcon fontSize="large" />
@@ -238,7 +236,7 @@ const ChatBox = props => {
                                             
                                         </ListItemAvatar>
                                         <ListItemText
-                                            primary={m.fromObj[0].name}
+                                            primary={m.fromObj[0].username}
                                             secondary={
                                                 <div>
                                                         
