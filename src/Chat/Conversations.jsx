@@ -39,10 +39,10 @@ const Conversations = props => {
     // Returns the recipient name that does not
     // belong to the current user.
     const handleRecipient = recipients => {
+        console.log(recipients)
         for (let i = 0; i < recipients.length; i++) {
             if (
-                recipients[i].username !==
-                authenticationService.currentUserValue.username
+                recipients[i].username!==authenticationService.currentUserValue.username
             ) {
                 return recipients[i];
             }

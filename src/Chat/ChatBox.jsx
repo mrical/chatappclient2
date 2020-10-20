@@ -232,21 +232,19 @@ const ChatBox = props => {
                                         <ListItemAvatar
                                             className={classes.avatar}
                                         >
-                                            {m.fromObj[0].img ? <Avatar src={`data:image/png;base64,${m.fromObj[0].img.data}`} >H</Avatar> : <Avatar>H</Avatar>}
+                                            {m.fromObj[0]&&m.fromObj[0].img ? <Avatar src={`data:image/png;base64,${m.fromObj[0]&&m.fromObj[0].img.data}`} >H</Avatar> : <Avatar>H</Avatar>}
                                             
                                         </ListItemAvatar>
                                         <ListItemText
-                                            primary={m.fromObj[0].username}
+                                            primary={m.fromObj[0]&&m.fromObj[0].username}
                                             secondary={
                                                 <div>
-                                                        
-                                                        
-                                                        {m.body.file && (
-                                                        <Link href={process.env.REACT_APP_API_URL+m.body.file.slice(7,m.body.file.length)} download={m.body.message+path.extname(m.body.file)}>
-                                                            <DescriptionIcon fontSize="large" />
-                                                        </Link>)}
-                                                        {m.body.message}
-                                                    </div>
+                                                    {m.body.file && (
+                                                    <Link href={process.env.REACT_APP_API_URL+m.body.file.slice(7,m.body.file.length)} download={m.body.message+path.extname(m.body.file)}>
+                                                        <DescriptionIcon fontSize="large" />
+                                                    </Link>)}
+                                                    {m.body.message}
+                                                </div>
                                             }
                                         />
                                     </ListItem>))
